@@ -3,6 +3,8 @@
 
       //Answer
 
+      // Its an explicit, it gives a keyword to this allowing you to use like a global scope, within just that function. or variable.
+
   // 2) What are the four rules that govern what the 'this keyword' is bound to and describe each?
 
       //Answer
@@ -25,6 +27,15 @@
 
     //Code Here
 
+ var user = {
+   username: "",
+   email: "",
+   getUsername: function() {
+     return this.username;
+   }
+ }
+
+ user.getUsername();
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
 
 
@@ -34,6 +45,17 @@
 // Write a constructor function, including method definitions, which will make the following function invocations function properly.
 
   //Function Invocations Here
+
+  function Car(make, model, year){
+    this.make = make,
+    this.model = model,
+    this.year = year
+    this.moveCar = function() {
+      return this.moveCar++;
+    }
+  }
+
+
 
 var prius = new Car('Toyota', 'Prius', 2011);
 var mustang = new Car('Ford', 'Mustang', 2013);
@@ -54,9 +76,9 @@ var getYear = function(){
 //Above you're given the getYear function. Call the getYear function with the prius then the mustang objects being the focal objects. *Don't add getYear as a property on both objects*.
 
 //Note(no tests)
-  //Code Here
-
-
+//   //Code Here
+var priusYear = getYear.bind(prius);
+console.log(priusYear());
 //New Problem
 
 var myUser = {
@@ -69,7 +91,8 @@ var getMyUsername = function() {
  return this.username;
 };
 
-var userName = getMyUsername(); //Fix this
+var userName = getMyUsername.call(myUser); //Fix this
+
 
 //Above you're given an object, and  a function. What will the getMyUsername function return?
 //Note(no tests)
